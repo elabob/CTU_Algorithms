@@ -1,0 +1,61 @@
+Cieľ
+
+Máme sekvenciu korálkov (0 = biela, 1 = červená, 2 = modrá) a chceme nájsť najdlhší segment, ktorý:
+
+Začína a končí modrým (2)
+
+Nikde sa nevyskytujú tri rovnaké korálky po sebe
+
+1️⃣ Prechádzame sekvenciu lineárne
+
+Postupujeme od prvého po posledný prvok.
+
+Budeme držať aktuálnu dĺžku segmentu, ktorý je platný podľa pravidla “max. dve rovnaké po sebe”.
+
+Sledujeme tiež farbu posledných dvoch korálkov, aby sme vedeli, či by ďalší rovnaký vytvoril trojicu.
+
+2️⃣ Sledujeme modré začiatky a konce
+
+Segment môže začať iba ak narazíme na modrý korálok (2).
+
+Ak aktuálny segment začal modrým, priebežne pridávame korálky, kým nenastane tri rovnaké po sebe.
+
+Segment môže skončiť len na modrom korálku, takže maximalizujeme dĺžku len, keď sa koniec rovná 2.
+
+3️⃣ Kontrola pravidla “tri rovnaké po sebe”
+
+Pri každom novom korálku porovnáme:
+
+Je rovnaký ako dva predchádzajúce?
+
+Áno: Nemôžeme ho pridať do segmentu → segment končí pred týmto korálkom.
+
+Nie: Môžeme pridať korálok do segmentu a pokračovať.
+
+Na tento účel si stačí pamätať len posledné dva prvky a aktuálnu dĺžku segmentu.
+
+4️⃣ Udržiavanie maximálnej dĺžky
+
+Pri každom korálku, ktorý pridáme do platného segmentu:
+
+Ak končí modrým korálkom, porovnaj aktuálnu dĺžku s maximálnou doteraz a prípadne ju aktualizuj.
+
+Ak segment skončil (tri rovnaké po sebe), začneme nový segment, ktorý môže začínať až pri ďalšom modrom korálku.
+
+5️⃣ Výsledok
+
+Po prechode celej sekvencie maximálna dĺžka, ktorú sme si zaznamenali, je odpoveď.
+
+Tipy pre implementáciu
+
+Nepotrebujeme žiadne “veľké okná” ani zložité dátové štruktúry – stačia konštantné premenné:
+
+posledné dva korálky
+
+aktuálna dĺžka segmentu
+
+maximálna dĺžka segmentu
+
+Pre veľké vstupy (milióny prvkov) je lineárny prístup efektívny a bezpečný, O(N).
+
+Pri takýchto úlohách je vždy dobré si nakresliť sekvenciu a prejsť algoritmus “na papieri” – pomôže ti pochopiť sliding window / priebežné počítanie.
