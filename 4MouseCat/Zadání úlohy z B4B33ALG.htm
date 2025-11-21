@@ -1,0 +1,334 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8">
+  <meta http-equiv="cache-control" content="no-cache">
+  <link rel="stylesheet" type="text/css" href="default.css" />
+  <title>Zadání úlohy z B4B33ALG</title>
+</head>
+<body>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<!-- saved from url=(0111)https://cw.felk.cvut.cz/brute/data/ae/release/2019z_b4b33alg/algzima2019/evaluation/input.php?task=occultations -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <meta http-equiv="cache-control" content="no-cache">
+  <link rel="stylesheet" type="text/css" href="./Zadání úlohy z A4B33ALG_files/default.css">
+  <title>Zadání úlohy z B4B33ALG</title>
+</head>
+
+<body>
+
+ <div class="main">
+
+<h2 style="text-align: justify;">
+  <span style="color: blue;">Optimální průchod sítí</span>
+  <span style="float: right;">ALG</span>
+</h2>
+<p align="justify">
+
+Robotická výzkuná skupina programuje roboty pro pohyb v komplexním terénu městské zástavby. 
+Jak se ukazuje, některé aspekty pohybu robotů a jejich koordinace mohou být modelovány 
+jako specifická úloha myši, která se pohybuje v síti, kde se musí vyhnout číhajícímu kocourovi. 
+Úloha je formulována následujícím způsobem:
+<br><br>
+Je dána síť, což je soustava uzlů a chodeb. Některé dvojice uzlů jsou propojeny chodbami, 
+chodby jsou obousměrné a mohou se stýkat pouze v uzlech. V síti jsou vyznačeny tři navzájem různé uzly. 
+První je startovní uzel myši, v něm se myš nalézá předtím, než se začne v síti pohybovat. Druhý uzel je cílový uzel myši, 
+v něm má myš ukončit svůj pohyb v síti.
+Třetí uzel je počáteční uzel kocoura,  v něm se kocour nalézá předtím, než se myš začne v síti pohybovat.
+<br>
+Každý další uzel kromě uvedených tří je buďto tichý nebo hlučný. 
+Když myš dorazí do tichého uzlu, kocour ji neslyší, a zůstane v tom uzlu, ve kterém se právě nachází.
+Když myš dorazí do hlučného uzlu, kocour zaslechne hluk a může, ale nemusí, zareagovat. 
+Případná reakce kocoura  spočívá v tom, že ihned skočí podél některé chodby ze svého aktuálního uzlu do sousedního uzlu.
+Skok kocour provede okamžitě, ještě předtím, než myš může z aktuálniho hlučneho uzlu pokračovat ve své cestě. 
+Pokud se v uzlu, kam kocour dopadne, právě nalézá myš, kocour ji lapí a myš dále nepokračuje ve své cestě.
+Pokud se v tomto uzlu myš nenalézá, kocour v něm dále nehybně setrvá, přinejmenším do té doby než opět zaslechne hluk.
+Kocour je líný a počet skoků, které celkově může provést, je omezený. Po provedení tohoto počtu skoků kocour
+už dále nebude měnit svou polohu, bez ohledu na jakýkoli případný další hluk. 
+Předtím, než kocour vyčerpá své skoky, nelze předvídat, zda a podle které hrany skočí ze svého aktuálního uzlu, když zasleche hluk.
+Můžeme si představovat, že kocour, dokud může, volí své akce zcela náhodně.
+
+<br><br>
+Pohyb myši probíhá v krocích. Během jednoho kroku se myš jednou chodbou přesune
+ze svého  aktuálního uzlu do některého sousedního uzlu v síti. Cesta myši je posloupnost na sebe navazujících kroků myši. Délka cesty myši
+je rovna počtu kroků, z nichž se cesta skládá.
+<br>
+
+Myš zná topolgii sítě, ví, které uzly jsou hlučné, a zná polohu počátečního uzlu kocoura.
+<br>
+Cesta myši je <b>bezpečná</b>, pokud vede ze startovního uzlu myši do koncového uzlu myši a přitom se nemůže stát, 
+že by v některém jejím uzlu kocour myš polapil, to jest,  nemůže se stát, že by se v některém okamžiku myš i kocour ocitli 
+společně v jednom uzlu této cesty.
+<br>
+Cesta myši z jejího startovního uzlu do jejího koncového uzlu je <b>optimální</b>, 
+pokud je bezpečná a má nejkratší možnou délku. Navíc, pokud existuje více bezpečných cest se stejnou nejkratší délkou,
+optimální cesta obsahuje co nejmenší počet hlučných uzlů.
+
+<br><br>
+
+</p>
+
+<!-- list
+<ul>
+<li>  </li>
+</ul>
+-->
+
+<!-- --------------------------------------------- IMAGE ------------------------------------------------- -->
+
+
+<table border="0" width="890" align="center">
+  <tr>
+  <td align="center">
+<img style="width: 300px; height: 235px;" src="getdata.php?task=mousecat&item=img1.png" /> <br>
+<!--
+<img style="width: 300px; height: 235px;" src="img1.png" />
+-->
+  
+<br><br>
+<b>Obrázek 1.</b> Ukázka sítě. Startovní a cílový uzel myši je vyznačen oranžovou a zelenou šipkou. 
+Uzel, ve kterém se na začátku nalézá kocour, je vyznačen červeným zaobleným obdélníkem. Hlučné uzly jsou 
+zvýrazněny barvou. Nejkratší bezpečná cesta myší má délku 6 a prochází jedním hlučným uzlem. 
+Je to cesta daná posloupností uzlů (21, 20, 19, 14, 11, 6, 2).  Obrázek ilustruje Příklad 1 níže.
+
+  </td>
+  </tr>
+</table>
+
+
+<!-- ------------------------------------------ THE TASK ------------------------------------------------- -->
+
+<h3><font color="blue">Úloha</font></h3>
+<p align="justify">
+Je dána síť s vyznačenými hlučnými uzly. Dále je dán startovní a cílový uzel myši, startovní uzel kocoura a maximální
+počet skoků, které vykoná. 
+Určete délku optimální cesty myši a počet hlučných vrcholů na této cestě.
+</p>
+
+ <hr>
+
+
+<!-- --------------------------------------- INPUT AND OUTPUT -------------------------------------------- -->
+
+<h3><font color="blue">Vstup</font></h3>
+<p align="justify">
+První řádek vstupu obsahuje tři  celá čísla  <i>N</i>, <i>H</i>, <i>E</i>, představující celkový počet uzlů v síti, počet hlučných uzlů v síti
+a počet chodeb v síti. Uzly sítě jsou číslovány 0, 1, 2, ..., <i>N</i>&minus;1.<br>
+Druhý řádek obsahuje celá čísla <i>S</i>, <i>C</i>, <i>K</i>, <i>M</i> představující číslo startovního uzlu myši, číslo cílového uzlu myši,
+číslo počátečního uzlu kocoura a maximální počet skoků, které kocour vykoná.<br>
+Třetí řádek obsahuje <i>H</i> celých čísel představujících čísla hlučných uzlů v síti. <br>
+Následuje <i>E</i> řádků, každý popisuje jednu chodbu v síti. Na řádku jsou uvedena čísla obou koncových uzlů spojených chodbou.
+Chodby i jejich koncové uzly jsou uvedeny v nahodilém pořadí.<br>
+Platí 10 &le; <i>N</i> &le; 2 &times; 10<sup>5</sup>, &nbsp;&nbsp;  1 &le; <i>H</i> &lt; <i>N</i>&minus;3, &nbsp;&nbsp; 1 &le; <i>M</i> &le; 50,  &nbsp;&nbsp; 20 &le; <i>E</i> &times; <i>M</i>  &le; 10<sup>7</sup>.
+
+Uzly s čísly <i>S</i>, <i>C</i>, <i>K</i> jsou navzájem různé, žádný z nich není hlučný.
+Každá dvě sousední čísla na každém řádku vstupu jsou oddělena mezerou.
+
+</p>
+
+<h3><font color="blue">Výstup</font></h3>
+<p align="justify">
+
+Výstup obsahuje jeden řádek s dvěma celými čísly oddělenými mezerou. První číslo představuje délku optimální cesty myši, druhé číslo představuje
+počet hlučných uzlů na této cestě. <br>
+V datech úlohy je zaručeno, že v síti vždy existuje alespoň jedna bezpečná cesta myši. 
+
+</p>
+
+
+
+<table border="0" width="900" align="left">
+<tr>
+
+<!-- ------------------------------------- EXAMPLE 1 ----------------------------------------------------- -->
+    
+<td align="left" width="300">
+
+<h3><font color="blue">Příklad 1</font></h3>
+<b>Vstup</b><br>
+<pre>
+22 4 36 
+21 2 9 2
+6 7 12 15
+0 1
+1 2
+2 3
+3 4
+5 6
+6 7
+7 8
+8 9
+10 11
+12 13
+14 15
+15 16
+16 17
+18 19
+19 20
+20 21
+0 5
+5 10
+10 18
+1 6
+6 11
+11 14
+14 19
+2 7
+7 15
+3 8
+8 12
+12 16
+16 20
+4 9
+9 13
+13 17
+17 21
+2 6
+7 12
+14 18
+</pre>
+<b>Výstup</b><br>
+<pre>
+6 1
+</pre>
+<br>
+Schéma sítě v Příkladu 1 je na obrázku 1 výše.
+<br>
+
+
+</td>
+  
+  
+  
+  
+
+<!-- ------------------------------------- EXAMPLE 2 ----------------------------------------------------- -->
+ 
+  
+<td align="left" width="200">
+
+<h3><font color="blue">Příklad 2</font></h3>
+<b>Vstup</b><br>
+<pre>
+10 5 11
+5 1 0 7
+2 3 7 8 9
+1 2
+2 3
+2 4
+3 4    
+5 6
+6 7
+7 8
+8 9
+0 6
+3 9
+4 9
+</pre>
+<b>Výstup</b><br>
+<pre>
+7 4
+</pre>
+<br><br><br>
+
+</td>
+  
+<td align="center">
+<img style="width: 303px; height: 97px;" src="getdata.php?task=mousecat&item=img2.png" /><br><br>
+<!--
+<img style="width: 303x; height: 97px;" src="img2.png" />
+-->
+<br><br>
+<b>Obrázek 2.</b> Schéma sítě v Příkladu 2.
+</td>
+  
+
+</tr> 
+
+</table>
+
+
+<table border="0" align="center">
+
+
+
+<td align="left"  width="200">
+
+<!-- ------------------------------------- EXAMPLE 3 ----------------------------------------------------- -->  
+
+<h3><font color="blue">Příklad  3</font></h3>
+<b>Vstup</b><br>
+<pre>
+15 7 21
+13 1 6 3 
+0 4 8 10 11 12 14
+0 1
+1 2
+3 4
+4 5
+5 6
+6 7
+7 8
+8 9
+12 13
+13 14
+0 3
+3 12
+6 13
+2 9
+9 14
+1 4
+1 8
+4 10
+8 11
+10 13
+11 13
+</pre>
+<b>Výstup</b><br>
+<pre>
+4 1
+</pre>
+<br><br><br>
+
+
+
+<td align="center">
+<img style="width: 353px; height: 193px;" src="getdata.php?task=mousecat&item=img3.png" /><br><br>
+<!--
+<img style="width: 353px; height: 193px;" src="img3.png" />
+-->
+<br><br>
+<b>Obrázek 3.</b> Schéma sítě v Příkladu 3.
+</td>
+
+
+</td>
+
+<td align="left" width="400">
+
+<td>
+
+  
+</tr> 
+
+
+</table>
+
+
+
+<!-- -------------------------------  DATAPUB ------------------------------------------------------------ -->
+
+
+
+<h3><font color="blue">Veřejná data</font></h3>
+<p align="justify">
+Veřejná data k&nbsp;úloze jsou k&nbsp;dispozici. Veřejná data jsou uložena také v&nbsp;odevzdávacím systému a při
+každém odevzdání/spuštění úlohy dostává řešitel kompletní výstup na stdout a stderr ze svého programu
+pro každý soubor veřejných dat.
+<br>
+<a href="getdata.php?task=mousecat&amp;item=datapub.zip"><b>Veřejná data</b></a>
+</p>
+
+</div></body></html></body>
+</html>
