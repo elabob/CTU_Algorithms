@@ -1,0 +1,149 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8">
+  <meta http-equiv="cache-control" content="no-cache">
+  <link rel="stylesheet" type="text/css" href="default.css" />
+  <title>Zadání úlohy z B4B33ALG</title>
+</head>
+<body>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<!-- saved from url=(0111)https://cw.felk.cvut.cz/brute/data/ae/release/2019z_b4b33alg/algzima2019/evaluation/input.php?task=occultations -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <meta http-equiv="cache-control" content="no-cache">
+  <link rel="stylesheet" type="text/css" href="./Zadání úlohy z A4B33ALG_files/default.css">
+  <title>Zadání úlohy z B4B33ALG</title>
+</head>
+<body>
+ <div class="main">
+
+
+<h2><font color="blue">BVS s Lazy Delete</font></h2>
+<p align="justify">
+Uvažujme binární vyhledávací strom (BVS), ve kterém se operace Insert chová standardně, ale operace Delete funguje tak, že jen označuje uzly
+se smazanými klíči, fyzicky je však nemaže, ponechává je ve stromu. Jedná se o tzv. líný Delete.
+<br><br>
+Aby v takovémto BVS nepřevládly uzly označené jako smazané, definujeme dále operaci Compact, která celý strom přebuduje tak, že v něm zůstanou jen uzly
+s neoznačenými klíči, zatímco všechny uzly se smazanými klíči se odstraní. Dále platí, že se zachová pořadí preorder nesmazaných klíčů, což zaručuje,
+že výsledek operace Compact je dán jednoznačně.
+<br><br>
+Pro pohodlnější práci s navrženým BVS zavedeme pravidlo, že Compact se volá automaticky po každé operaci Insert nebo Delete, která způsobí, že součet výšek
+uzlů označených jako smazaných je větší než součet výšek neoznačených uzlů. Pro daný uzel <i>u</i> je jeho výška rovna rozdílu mezi hloubkou celého BVS
+a hranovou vzdáleností uzlu <i>u</i> od kořene. Zavedené pravidlo uděluje větší váhu uzlům blíže ke kořeni, jelikož při
+provádění operací Insert a Delete přes takovéto uzly procházíme častěji než přes uzly ve větší hloubce.
+<br><br>
+Pro úplnost poznamejme, že pokud Insert vkládá klíč, který je v BVS obsažen v uzlu označeném jako smazaný, pak se tento uzel stane nesmazaným
+(nový uzel se nepřidá). V případě, kdy Insert vkládá klíč, který je již v nesmazaném uzlu, nedojde k žádné změně, stejně tak v případech, kdy
+Delete maže klíč, který ve stromě není nebo je v uzlu označeném jako smazaný.
+<br><br>
+
+
+</li>
+</ol>
+
+
+</p>
+
+<h3><font color="blue">Úloha</font></h3>
+<p align="justify">
+Nad prázdným BVS s líným mazáním a automatickým voláním operace Compact proveďte zadanou posloupnost operací Insert a Delete.
+
+&nbsp; 
+&nbsp; 
+&nbsp; <table border="0" width="800" align="center"><tbody><tr><td align="center">
+<img style="width: 840px;" src="getdata.php?task=lazyBST&item=example.png">
+<!--img style="width: 840px;" src="example.png"-->
+<br>
+
+
+<b>Obrázek 1.</b> Stavy na začátku prázdného BVS po provedení operací: a) vložení klíčů 4, 2, 1, 3, 6, 5 (v tomto pořadí),
+b) smazání klíčů 4 a 6 (jejich uzly ve stromě zůstávají, pouze se označí jako smazané), c) Compact, který následuje
+po dokončení druhé operace Delete, protože součet výšek označených uzlů je 2+1=3, zatímco součet výšek neoznačených uzlů je 0+1+0+0=1.
+Pořadí preorder nesmazaných klíčů je pro stromy b) a c) totožné.
+     </td></tr>
+</tbody></table>
+
+<hr>
+
+
+<h3><font color="blue">Vstup</font></h3>
+<p align="justify">
+První řádek vstupu obsahuje celé číslo <i>N</i>, které udává počet prováděných operací.
+Následuje <i>N</i> řádků. Na každém z těchto řádků jsou hodnoty <i>O</i> a <i>K</i> oddělené mezerami.
+<i>K</i> je celé kladné číslo. 
+<i>O</i> je buď řetězec znaků "ins", potom řádek reprezentuje operaci Insert(<i>K</i>), anebo řetězec "del",
+potom řádek reprezentuje operaci Delete(<i>K</i>).
+<br>
+Platí 1 &le; <i>N</i> &le; 2.5 &times; 10<sup>5</sup> a 1 &le; <i>K</i> &le; 10<sup>4</sup>.
+
+
+</p>
+
+
+ <h3><font color="blue">Výstup</font></h3>
+<p align="justify">
+Výstup obsahuje jeden textový řádek, na kterém jsou dvě čísla oddělená mezerou. První číslo je rovno počtu volání operace Compact během celého procesu,
+druhé číslo udává hloubku výsledného stromu.
+</p>
+
+
+<h3><font color="blue">Příklad 1</font></h3>
+
+<b>Vstup</b><br>
+<pre>
+8
+ins 4
+ins 2
+ins 1
+ins 3
+ins 6
+ins 5
+del 4
+del 6
+</pre>
+
+<b>Výstup</b><br>
+<pre>
+1 2
+</pre>
+
+Data a řešení Příkladu 1 můžeme vidět na <b>Obrázku</b> 1.
+<br/>
+
+<h3><font color="blue">Příklad 2</font></h3>
+<b>Vstup</b><br>
+<pre>
+12
+ins 5
+del 5
+ins 4
+ins 3
+ins 8
+ins 7
+ins 6
+ins 5
+ins 4
+del 3
+del 8
+del 7
+</pre>
+
+<b>Výstup</b><br>
+<pre>
+2 2
+</pre>
+
+
+<hr>
+<h3><font color="blue">Veřejná data</font></h3>
+<p align="justify">
+Veřejná data k&nbsp;úloze jsou k&nbsp;dispozici. Veřejná data jsou uložena také v&nbsp;odevzdávacím systému a při
+každém odevzdání/spuštění úlohy dostává řešitel kompletní výstup na stdout a stderr ze svého programu
+pro každý soubor veřejných dat.
+<br>
+<a href="getdata.php?task=lazyBST&amp;item=datapub.zip"><b>Veřejná data</b></a>
+</p>
+
+</div></body></html></body>
+</html>
