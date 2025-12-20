@@ -1,0 +1,6 @@
+Pravidlo klesania: Každý nový rovný úsek potrubia musí mať menší súčet ventilov než ten úsek predtým.
+                    (Musí to stále klesať: napr. 100 -> 80 -> 50...).
+
+
+Pravidlo prázdnych rohov: Políčka, kde sa potrubie zatáča (rohy), a tiež úplný začiatok a koniec trasy,
+                    sa do súčtu nepočítajú (je tam vždy 0 ventilov).
